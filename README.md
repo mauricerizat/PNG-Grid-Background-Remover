@@ -20,3 +20,5 @@ If this is the case, the pixel is made transparent by changing it's alpha to zer
 - Select area within which to not remove white and gray pixels - This is important because the program removes all white and gray pixels which may not be desirable in many cases.
 - Modern looking GUI
 - Progress bar
+
+Contact me at *mauricerizat@gmail.com* to report bugs
