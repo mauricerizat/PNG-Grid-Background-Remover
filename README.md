@@ -17,4 +17,5 @@ If this is the case, the pixel is made transparent by changing it's alpha to zer
 
 ## Desired future features:
 - Change values of colors to remove i.e. accomodate for when grid values aren't gray-and-white
-- Select area within which to not remove white and gray pixels - This is important because the program removes all white and gray pixels. This may not be desirable in many cases.
+- Select area within which to not remove white and gray pixels - This is important because the program removes all white and gray pixels which may not be desirable in many cases.
+- Modern looking GUI
