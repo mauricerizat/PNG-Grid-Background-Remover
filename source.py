@@ -1,27 +1,32 @@
-#Imports
-from tkinter import *
-from tkinter import messagebox
-from tkinter import ttk
-from tkinter.ttk import Progressbar
-from tkinter.filedialog import askopenfilename
-from PIL import Image, ImageTk
+"""Imports"""
 import os
 
-#Global Variables
+from tkinter import *
+from tkinter import messagebox, ttk
+from tkinter.ttk import Progressbar
+from tkinter.filedialog import askopenfilename
+
+from PIL import Image, ImageTk
+
+"""Global Variables"""
 filename = "none" #Default filename. This string "none" will be used to check no file selected
 photo1 = ImageTk.PhotoImage #stores displayed image
 tolerancePercent = 50 #Tolerance value. Default is 50
 outputFile = "defaultOutput" #Stores full part of output file
 
-#This is primarily for when exe is created. It returns a usable path for the given relative path
+#
 def resource_path(relative_path): 
+    """This is primarily for when exe is created. It returns a usable path for the given relative path"""
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath("."), relative_path)
 
-#Selection of file
-#Called by press of selectFileButton
+
 def fileSelect():
+    """
+    This function performs file selection
+    Called by press of selectFileButton
+    """
     global filename, photo1 #Global variables to use
     
     try:
@@ -34,21 +39,25 @@ def fileSelect():
         photoLabel.config(image=photo1)
         #Display image changed
     except:
-        messagebox.showerror("Incompatible File Error", "The file you have chosen is incompatible. Please select an image file and try again. If this error cannot be resolved, please report it to me at mauricerizat@gmail.com")
+        if (filename != ""):
+            messagebox.showerror("Incompatible File Error", "The file you have chosen is incompatible. Please select an image file and try again. If this error cannot be resolved, please report it to me at mauricerizat@gmail.com")
     
-#Removal of grid background 
-#Called by press of removeBkgButton
+
 def removeBkg():
+    """
+    This functions performs the removal of grid background 
+    Called by press of removeBkgButton
+    """
     global filename, tolerancePercent, outputFile, photo1 #Global variables to use
     
-    try:
-        removeBkgButton.config(text="PROCESSING...")
-        window.update()
-        
+    try:      
         #Check for no file chosen
-        if (filename == "none"):
+        if (filename == "none" or filename == ""):
             messagebox.showerror("Error! File Not Selected.", "Please select a file and try again")
             return #Show error message and cancel process if no file chosen   
+        
+        removeBkgButton.config(text="PROCESSING...")
+        window.update()        
         
         #Processing output file path. Output will be in same directory with user-provided name
         outputFileName = outputFileNameEntry.get();
